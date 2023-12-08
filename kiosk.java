@@ -137,6 +137,10 @@ class PaymentSystem{
 			}
 		}
 	}
+	int restGiftCard(int amount, int giftCard) { //남은 상품권 금액 리턴
+		giftCard-=amount;
+		return giftCard;
+	}
 	boolean pointPayment(int price, int point) {
 		if (point < 5000) {
 			System.out.println("포인트가 부족합니다. (5000원 이상시 사용가능)");
@@ -246,6 +250,7 @@ public class kiosk {
 			System.out.println("상품권 금액 입력 : ");
 			int giftCard = s.nextInt();
 			success = p.giftCardPayment(giftCard, total,b.sumBonusPoint());
+			rest = p.restGiftCard(total, giftCard);
 		}else if(method==4) {
 			success = p.pointPayment(total, b.sumBonusPoint());
 		}
@@ -282,6 +287,7 @@ public class kiosk {
 					System.out.println("===================================");;
 				}else if(method==3) {
 					System.out.println("결제방식 : 상품권");
+					System.out.println("남은 상품권 금액 : "+ rest+"원");
 					System.out.println("===================================");
 				}else if(method==4) {
 					System.out.println("결제방식 : 포인트");
