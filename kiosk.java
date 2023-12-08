@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import test4.PaymentSystem;
+
 class Food{
 	int price;
 	int bonusPoint;
@@ -161,6 +163,7 @@ public class kiosk {
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
 		Buyer b = new Buyer();
+		PaymentSystem p = new PaymentSystem();
 
 		int menuNum;
 		
@@ -211,6 +214,38 @@ public class kiosk {
 				System.out.println("번호를 잘못입력하였습니다.");
 				break;
 			}
+		}
+		System.out.println("상품명");
+		b.summary();
+		System.out.println("총 금액은 "+b.sumPrice()+"원입니다.");	
+		int total=b.sumPrice();
+		System.out.println("||결제 방법을 선택하세요||");
+		System.out.println("1: 현금         2: 카드");
+		System.out.println("3: 기프티콘  4: 포인트(5000원이상시사용가능)");
+		System.out.println("5: 결제 취소");
+		int method = s.nextInt();
+		boolean success = false;
+		int rest=0;
+		
+		if (method==1) { 
+			success = p.cashPayment(total, b.sumBonusPoint());
+		}else if (method ==2) {
+			success = p.cardPayment(total, b.sumBonusPoint());
+		}else if(method==3) {
+			System.out.println("상품권 금액 입력 : ");
+			int giftCard = s.nextInt();
+			success = p.giftCardPayment(giftCard, total,b.sumBonusPoint());
+		}else if(method==4) {
+			success = p.pointPayment(total, b.sumBonusPoint());
+		}
+		else if(method ==5) {
+			System.out.println("결제가 취소되었습니다.");
+			return;
+		}else {
+			System.out.println("잘못된 결제 방법입니다.");
+		}
+		if(success) {
+			System.out.println("결제가 완료되었습니다. 감사합니다.");
 		}
 	}
 }
