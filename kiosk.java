@@ -76,6 +76,16 @@ class Buyer{
 		}
 		count=0;
 	}
+	void removeCart() { //카트비우기
+		cartCount();
+		for(int i =count-1;i>=0;i--) {
+			cart[i]=null;
+			foodAmount[i]=0;
+		}
+		price=0;
+		bonusPoint=0;
+		count=0;
+	}
 }
 
 public class kiosk {
@@ -116,7 +126,17 @@ public class kiosk {
 				System.out.println("결제 금액 : "+b.sumPrice());
 				System.out.println("적립금 : "+b.sumBonusPoint());
 				System.out.println("----------------------------");
-				break;
+				System.out.println("1. 주문계속하기 2. 장바구니 비우기");
+				int numCart = s.nextInt();
+				if(numCart==1) {
+					break;
+				}else if(numCart==2) {
+					b.removeCart();
+					System.out.println("장바구니 비우기 완료");
+					break;
+				}else {
+					break;
+				}
 			default: 
 				System.out.println("번호를 잘못입력하였습니다.");
 				break;
