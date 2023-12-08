@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import test4.PaymentSystem;
-
 class Food{
 	int price;
 	int bonusPoint;
@@ -246,6 +244,17 @@ public class kiosk {
 		}
 		if(success) {
 			System.out.println("결제가 완료되었습니다. 감사합니다.");
+			System.out.println("영수증을 발급하시겠습니까?(Y/N)");
+			String answer = s.next();
+			if(answer.equals("Y") || answer.equals("y")){
+				System.out.println("===================================");
+				System.out.println("   품명          단가          수량          금액");
+				System.out.println("===================================");
+				System.out.println("===================================");
+				System.out.println("총 금액 : 원");
+				System.out.println("적립금액 : 원");
+				System.out.println("===================================");
+			}
 		}
 	}
 }
