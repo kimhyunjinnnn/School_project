@@ -137,6 +137,23 @@ class PaymentSystem{
 			}
 		}
 	}
+	boolean pointPayment(int price, int point) {
+		if (point < 5000) {
+			System.out.println("포인트가 부족합니다. (5000원 이상시 사용가능)");
+			return false;
+		}
+		System.out.println("현재 보유하신 포인트 : "+point + "원");
+		System.out.println("총 결제 금액 : "+price);
+		System.out.println("남은 적립금  : "+(point-price));
+		System.out.println("결제를 진행하시겠습니까? (Y/N)");
+		String answer = s.next();
+		if(answer.equals("Y") || answer.equals("y")){
+			return true;
+		}else {
+			System.out.println("결제가 취소되었습니다.");
+			return false;
+		}
+	}
 }
 	
 public class kiosk {
