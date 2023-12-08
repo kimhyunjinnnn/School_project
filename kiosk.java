@@ -88,6 +88,15 @@ class Buyer{
 	}
 }
 
+class PaymentSystem{
+	private Scanner s;
+	Buyer b;
+	public PaymentSystem() {
+		s = new Scanner(System.in);
+		b = new Buyer();
+	}
+}
+	
 public class kiosk {
 
 	public static void main(String[] args) {
