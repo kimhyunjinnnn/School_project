@@ -49,6 +49,8 @@ class Buyer{
 		System.out.println(selectedFood+" "+foodAmount[foodCnt2]+"개 장바구니에 담았습니다. ");
 		price+=selectedFood.price*foodAmount[foodCnt2]; 
 		bonusPoint+=selectedFood.bonusPoint*foodAmount[foodCnt2];
+		System.out.println("결제 금액 : "+selectedFood.price*foodAmount[foodCnt2]);
+		System.out.println("적립금 : "+selectedFood.bonusPoint*foodAmount[foodCnt2]);
 		cart[cartCnt++]=selectedFood;
 		foodCnt2++;
 		return selectedFood.price; //선택한 상품 단가 리턴
