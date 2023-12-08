@@ -162,8 +162,10 @@ public class kiosk {
 		Scanner s = new Scanner(System.in);
 		Buyer b = new Buyer();
 		PaymentSystem p = new PaymentSystem();
-
+		Integer[] integer = new Integer[10];
 		int menuNum;
+		int cheese =0, shrimp = 0, coke = 0; //상품 단가 0으로 초기화
+		int unitPrice=0; 
 		
 		while(true) {
 			System.out.println("------[메뉴]------");
@@ -182,13 +184,13 @@ public class kiosk {
 	
 			switch(menuNum) {
 			case 1:
-				b.buy(new  Cheeseburger());  //단가 4000원 
+				cheese = b.buy(new  Cheeseburger());  //단가 4000원 
 				break;
 			case 2:
-				b.buy(new  Shrimpburger());  //단가 4000원 
+				shrimp = b.buy(new  Shrimpburger());  //단가 4000원 
 				break;
 			case 3:
-				b.buy(new  Coke());  //단가 1000원 
+				coke = b.buy(new  Coke());  //단가 1000원 
 				break;
 			case 5:
 				System.out.println("------[장바구니-최대10개]------");
@@ -212,7 +214,18 @@ public class kiosk {
 				System.out.println("번호를 잘못입력하였습니다.");
 				break;
 			}
+			if(menuNum==1) {
+				integer[unitPrice]=cheese;
+				unitPrice++;
+			}else if(menuNum==2) {
+				integer[unitPrice]=shrimp;
+				unitPrice++;
+			}else if(menuNum==3) {
+				integer[unitPrice]=coke;
+				unitPrice++;
+			}
 		}
+		
 		System.out.println("상품명");
 		b.summary();
 		System.out.println("총 금액은 "+b.sumPrice()+"원입니다.");	
@@ -250,10 +263,32 @@ public class kiosk {
 				System.out.println("===================================");
 				System.out.println("   품명          단가          수량          금액");
 				System.out.println("===================================");
+				b.cartCount();
+				for(int i =0;i<b.count;i++) {
+					System.out.print(b.cart[i]+"     ");    //품명
+					System.out.print(integer[i]+"원       ");   //단가
+					System.out.print(b.foodAmount[i]+"개"+"         ");   //수량
+					System.out.println(integer[i]*b.foodAmount[i]+"원");   //금액
+				}
+
 				System.out.println("===================================");
-				System.out.println("총 금액 : 원");
-				System.out.println("적립금액 : 원");
-				System.out.println("===================================");
+				System.out.println("총 금액 : " +total+"원");
+				System.out.println("적립금액 : " + b.sumBonusPoint()+"원");
+				if (method==1) { 
+					System.out.println("결제방식 : 현금");
+					System.out.println("===================================");
+				}else if(method==2) {
+					System.out.println("결제방식 : 카드");
+					System.out.println("===================================");;
+				}else if(method==3) {
+					System.out.println("결제방식 : 상품권");
+					System.out.println("===================================");
+				}else if(method==4) {
+					System.out.println("결제방식 : 포인트");
+					System.out.println("===================================");
+				}else {
+					System.out.println("영수증 발급이 취소되었습니다.");
+				}
 			}
 		}
 	}
